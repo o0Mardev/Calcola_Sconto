@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name" translatable="false">Calcola sconto</string>
+    <string name="nav_header_title" translatable="false">Calcola sconto</string>
+    <string name="nav_header_subtitle" translatable="false">By Marco</string>
+    <string name="action_settings">Impostazioni</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Informazioni</string>
+    <string name="title_activity_settings">Impostazioni</string>
+
+    <string name="theme_header">Aspetto</string>
+    <string name="setting_shortcut">Preferenze</string>
+    <string name="summary_shortcut">Rimuoverà il pulsante nella home</string>
+    <string name="theme_title">Tema</string>
+    <string name="shortcut_title">Copia direttamente il risultato</string>
+
+    <string name="calculate_button">Calcola</string>
+    <string name="clear_button">Azzera</string>
+
+    <string name="first_hint">Inserisci il prezzo</string>
+    <string name="second_hint">Inserisci la percentuale</string>
+
+    <string name="apply_button">Applica</string>
+
+    <string name="gallery_fragnment">Applicazione sviluppata da Marco Del Vecchio</string>
+
+    <string name="discount_title">Mostra risparmio</string>
+    <string name="summary_discount">Visualizza quanto hai risparmiato</string>
+
+    <string name="black_mode_title">Modalità scura Amoled</string>
+    <string name="summary_black_mode">Utilizza nero puro</string>
+
+</resources>

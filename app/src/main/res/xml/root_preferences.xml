@@ -10,11 +10,11 @@
             app:key="theme"
             app:title="@string/theme_title"
             app:useSimpleSummaryProvider="true" />
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="check_box_preference_black_mode"
-            android:title="@string/black_mode_title"
-            app:summary="@string/summary_black_mode" />
+<!--        <CheckBoxPreference-->
+<!--            android:defaultValue="false"-->
+<!--            android:key="check_box_preference_black_mode"-->
+<!--            android:title="@string/black_mode_title"-->
+<!--            app:summary="@string/summary_black_mode" />-->
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/setting_shortcut">

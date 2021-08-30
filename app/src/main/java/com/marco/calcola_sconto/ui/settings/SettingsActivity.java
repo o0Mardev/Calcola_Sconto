@@ -30,17 +30,15 @@ public class SettingsActivity extends AppCompatActivity {
 
         LoadSettings(SettingsActivity.this);
 
-        SharedPreferences sharedPreferences3 =
-                PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
-        boolean black_mode = sharedPreferences3.getBoolean("check_box_preference_black_mode",false);
-
-        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-
-        if (black_mode==true && currentNightMode == Configuration.UI_MODE_NIGHT_YES){
-            setTheme(R.style.Theme);
-        } else {
-            setTheme(R.style.Theme_ProvaTEST_NoActionBar);
-        }
+//        SharedPreferences sharedPreferences3 =
+//                PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+//        boolean black_mode = sharedPreferences3.getBoolean("check_box_preference_black_mode",false);
+//
+//        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//
+//        if (black_mode==true && currentNightMode == Configuration.UI_MODE_NIGHT_YES){
+//            setTheme(R.style.Theme);
+//        }
 
 
 //        setTheme(R.style.Theme);
@@ -57,11 +55,11 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-
-                if (black_mode==true && currentNightMode == Configuration.UI_MODE_NIGHT_YES){
-                    setTheme(R.style.Theme);
-                }
+//                int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//
+//                if (black_mode==true && currentNightMode == Configuration.UI_MODE_NIGHT_YES){
+//                    setTheme(R.style.Theme);
+//                }
 
 
                 Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(

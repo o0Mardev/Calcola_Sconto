@@ -33,7 +33,7 @@
         android:layout_width="275dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="0.00 €"
+        android:text="@string/default_result"
         android:textColor="?attr/colorPrimary"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/EditText_prezzo"
@@ -45,9 +45,9 @@
 
     <Button
         android:id="@+id/button_azzera"
-        android:layout_width="115dp"
+        android:layout_width="125dp"
         android:layout_height="65dp"
-        android:text="Azzera"
+        android:text="@string/clear_button"
         android:textColor="?attr/colorOnPrimary"
         android:textColorHighlight="?attr/colorOnPrimary"
         android:textColorLink="?attr/colorOnPrimary"
@@ -62,7 +62,7 @@
 
     <Button
         android:id="@+id/button_calcola"
-        android:layout_width="115dp"
+        android:layout_width="125dp"
         android:layout_height="65dp"
         android:text="@string/calculate_button"
         android:textColor="?attr/colorOnPrimary"
@@ -122,8 +122,8 @@
         android:layout_height="47dp"
         android:background="@drawable/discount_background"
         android:gravity="center_vertical"
-        android:text=" Risparmio: "
-        android:textColor="?attr/colorOnPrimary"
+        android:padding="10dp"
+        android:text="@string/savings"        android:textColor="?attr/colorOnPrimary"
         android:textSize="18dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

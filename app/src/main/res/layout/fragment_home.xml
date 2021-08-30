@@ -33,7 +33,7 @@
         android:layout_width="275dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="0.00 €"
+        android:text="@string/default_result"
         android:textColor="?attr/colorPrimary"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/EditText_prezzo"
@@ -45,9 +45,9 @@
 
     <Button
         android:id="@+id/button_azzera"
-        android:layout_width="115dp"
+        android:layout_width="125dp"
         android:layout_height="65dp"
-        android:text="Azzera"
+        android:text="@string/clear_button"
         android:textColor="?attr/colorOnPrimary"
         android:textColorHighlight="?attr/colorOnPrimary"
         android:textColorLink="?attr/colorOnPrimary"
@@ -62,7 +62,7 @@
 
     <Button
         android:id="@+id/button_calcola"
-        android:layout_width="115dp"
+        android:layout_width="125dp"
         android:layout_height="65dp"
         android:text="@string/calculate_button"
         android:textColor="?attr/colorOnPrimary"
@@ -97,14 +97,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.215" />
+        app:layout_constraintVertical_bias="0.224" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:backgroundTint="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,25 +112,76 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.900"
-        app:srcCompat="@drawable/ic_baseline_content_copy"
+        app:icon="@drawable/ic_baseline_copy_all"
+        android:text="Copia"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_copy_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="?attr/colorPrimary"
+        app:borderWidth="0dp"
+        android:background="?attr/colorPrimary"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/add_fab"
+        app:layout_constraintEnd_toEndOf="@+id/add_fab"
+        app:srcCompat="@drawable/ic_baseline_content_copy">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <TextView
+        android:id="@+id/copy_result_action_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/copy_result"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_copy_result"
+        app:layout_constraintEnd_toStartOf="@+id/fab_copy_result"
+        app:layout_constraintTop_toTopOf="@+id/fab_copy_result" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_copy_saving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:background="?attr/colorPrimary"
+        android:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/fab_copy_result"
+        app:layout_constraintEnd_toEndOf="@+id/fab_copy_result"
+        app:layout_constraintStart_toStartOf="@+id/fab_copy_result"
+        app:srcCompat="@drawable/ic_baseline_content_copy" />
+
+    <TextView
+        android:id="@+id/copy_saving_action_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/copy_saving"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_copy_saving"
+        app:layout_constraintEnd_toStartOf="@+id/fab_copy_saving"
+        app:layout_constraintTop_toTopOf="@+id/fab_copy_saving" />
 
     <TextView
         android:id="@+id/textViewDiscount"
-        android:elevation="2dp"
-        android:layout_width="240dp"
-        android:layout_height="50dp"
+        android:layout_width="210dp"
+        android:layout_height="45dp"
         android:background="@drawable/discount_background"
+        android:elevation="2dp"
         android:gravity="center_vertical"
-        android:text=" Risparmio: "
+        android:padding="10dp"
+        android:text="@string/savings"
         android:textColor="?attr/colorOnPrimary"
         android:textSize="18dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

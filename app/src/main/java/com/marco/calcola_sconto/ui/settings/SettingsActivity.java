@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
@@ -30,12 +31,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         LoadSettings(SettingsActivity.this);
 
-        SharedPreferences sharedPreferences3 =
-                PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
-        boolean black_mode = sharedPreferences3.getBoolean("check_box_preference_black_mode",false);
-
-        if (black_mode) setTheme(R.style.Theme);
-
         super.onCreate(savedInstanceState);
 
 
@@ -46,7 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
         View viewCircle = findViewById(R.id.circle);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.circle_explosion);
-        animation.setDuration(500);
+        animation.setDuration(600);
         animation.setInterpolator(new AccelerateDecelerateInterpolator());
 
 
@@ -56,9 +51,6 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (black_mode) setTheme(R.style.Theme);
-
-
                 button.setVisibility(View.INVISIBLE);
                 textViewApply.setVisibility(View.INVISIBLE);
                 viewCircle.setVisibility(View.VISIBLE);
@@ -66,14 +58,10 @@ public class SettingsActivity extends AppCompatActivity {
                 viewCircle.startAnimation(animation);
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
+                    public void onAnimationStart(Animation animation) { }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-
-
                         Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName() );
                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -81,12 +69,8 @@ public class SettingsActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
+                    public void onAnimationRepeat(Animation animation) { }
                 });
-
-
 
             }
         });
@@ -122,7 +106,7 @@ public class SettingsActivity extends AppCompatActivity {
     public void LoadSettings(Context context) {
 
         SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(context/* Activity context */);
+                PreferenceManager.getDefaultSharedPreferences(context);
         String theme = sharedPreferences.getString("theme", "follow_system");
         switch (theme) {
             case "light":

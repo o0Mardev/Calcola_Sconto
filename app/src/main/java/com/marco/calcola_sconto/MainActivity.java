@@ -30,13 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         SettingsActivity settingsActivity = new SettingsActivity();
-        settingsActivity.LoadSettings(this);
-
-//        SharedPreferences sharedPreferences3 =
-//                PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-//        boolean black_mode = sharedPreferences3.getBoolean("check_box_preference_black_mode", false);
-//
-//        if (black_mode) setTheme(R.style.Theme);
+        settingsActivity.LoadSettings(getApplicationContext());
 
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());

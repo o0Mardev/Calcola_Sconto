@@ -36,11 +36,7 @@ public class MainActivity extends AppCompatActivity {
 //                PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 //        boolean black_mode = sharedPreferences3.getBoolean("check_box_preference_black_mode", false);
 //
-//        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-//
-//        if (black_mode == true && currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
-//            setTheme(R.style.Theme);
-//        }
+//        if (black_mode) setTheme(R.style.Theme);
 
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());

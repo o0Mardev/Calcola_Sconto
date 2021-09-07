@@ -1,4 +1,4 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -37,22 +37,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:layout_gravity="bottom|start"
-        android:layout_marginBottom="40dp"
-        android:layout_marginStart="30dp"
         android:src="@drawable/ic_baseline_check_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+    <View
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/circle"
+        android:background="@drawable/circle"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/apply_button"
+        app:layout_constraintEnd_toEndOf="@+id/apply_button"
+        app:layout_constraintStart_toStartOf="@+id/apply_button"
+        app:layout_constraintTop_toTopOf="@+id/apply_button" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_marginBottom="55dp"
-        android:layout_marginStart="100dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/apply_button"
         android:textColor="?attr/colorOnPrimarySurface"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/apply_button"
+        android:layout_marginStart="78dp"
+        android:layout_marginBottom="40dp"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

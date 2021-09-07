@@ -112,8 +112,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.900"
-        app:icon="@drawable/ic_baseline_copy_all"
-        android:text="Copia"
+        app:icon="@drawable/ic_baseline_content_copy"
+        android:text="@string/copy"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -127,7 +127,7 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/add_fab"
         app:layout_constraintEnd_toEndOf="@+id/add_fab"
-        app:srcCompat="@drawable/ic_baseline_content_copy">
+        app:srcCompat="@drawable/ic_baseline_copy_all">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
@@ -136,6 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:textColor="?attr/colorPrimary"
         android:text="@string/copy_result"
         app:layout_constraintBottom_toBottomOf="@+id/fab_copy_result"
         app:layout_constraintEnd_toStartOf="@+id/fab_copy_result"
@@ -153,7 +154,7 @@
         app:layout_constraintBottom_toTopOf="@+id/fab_copy_result"
         app:layout_constraintEnd_toEndOf="@+id/fab_copy_result"
         app:layout_constraintStart_toStartOf="@+id/fab_copy_result"
-        app:srcCompat="@drawable/ic_baseline_content_copy" />
+        app:srcCompat="@drawable/ic_baseline_copy_all" />
 
     <TextView
         android:id="@+id/copy_saving_action_text"
@@ -161,6 +162,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/copy_saving"
+        android:textColor="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/fab_copy_saving"
         app:layout_constraintEnd_toStartOf="@+id/fab_copy_saving"
         app:layout_constraintTop_toTopOf="@+id/fab_copy_saving" />

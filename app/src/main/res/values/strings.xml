@@ -22,9 +22,11 @@
 
     <string name="apply_button">Apply</string>
 
-    <string name="gallery_fragment1">App dedveloped by Marco Del Vecchio</string>
-    <string name="gallery_fragment2">This is an open-source project</string>
-    <string name="version">Version: \u0020</string>
+    <string name="gallery_fragment1">Help with translations</string>
+    <string name="gallery_fragment_subtitle1">Open a pull request on Github</string>
+    <string name="gallery_fragment2">Feedback and feature requests</string>
+    <string name="gallery_fragment_subtitle2">Feel free to help the project</string>
+    <string name="version">App version:</string>
 
     <string name="discount_title">Show savings</string>
     <string name="summary_discount">Look how much you have saved</string>
@@ -44,5 +46,7 @@
     <string name="copy_result">Copy result</string>
     <string name="copy_saving">Copy saving</string>
     <string name="copy">Copy</string>
+
+    <string name="accessibility1">Click here to apply settings</string>
 
 </resources>

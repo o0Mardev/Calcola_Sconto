@@ -14,21 +14,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.marco.calcola_sconto.R;
-import com.marco.calcola_sconto.databinding.ActivityMainBinding;
 import com.marco.calcola_sconto.databinding.FragmentHomeBinding;
-
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-    FloatingActionButton mAddResultFab, mAddSavingFab;
+    FloatingActionButton mAddResultFab, mAddSavingFab, mAddDefaultFab;
     ExtendedFloatingActionButton mAddFab;
     TextView addResultText, addSavingActionText;
 
@@ -39,30 +35,26 @@ public class HomeFragment extends Fragment {
     TextView txtRisultatoFinale, txtRisparmio;
 
 
-    private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mAddFab = view.findViewById(R.id.add_fab);
         mAddResultFab = view.findViewById(R.id.fab_copy_result);
         mAddSavingFab = view.findViewById(R.id.fab_copy_saving);
-        addResultText =
-                view.findViewById(R.id.copy_result_action_text);
-        addSavingActionText =
-                view.findViewById(R.id.copy_saving_action_text);
+        mAddDefaultFab = view.findViewById(R.id.fab_copy_default);
+        addResultText = view.findViewById(R.id.copy_result_action_text);
+        addSavingActionText = view.findViewById(R.id.copy_saving_action_text);
+
 
         // Now set all the FABs and all the action name
         // texts as GONE
@@ -79,143 +71,123 @@ public class HomeFragment extends Fragment {
         mAddFab.shrink();
 
         SharedPreferences sharedPreferences1 =
-                PreferenceManager.getDefaultSharedPreferences(getContext());
+                PreferenceManager.getDefaultSharedPreferences(requireContext());
         boolean checkbox1 = sharedPreferences1.getBoolean("check_box_preference_shortcut", false);
 
         SharedPreferences sharedPreferences2 =
-                PreferenceManager.getDefaultSharedPreferences(getContext());
-        boolean checkbox2 = sharedPreferences2.getBoolean("check_box_preference_discount",false);
+                PreferenceManager.getDefaultSharedPreferences(requireContext());
+        boolean checkbox2 = sharedPreferences2.getBoolean("check_box_preference_discount", false);
 
         txtPrezzo = view.findViewById(R.id.EditText_prezzo);
         txtPercentuale = view.findViewById(R.id.EditText_percentuale);
         txtRisultatoFinale = view.findViewById(R.id.TextView_risultato);
-        txtRisparmio =view.findViewById(R.id.textViewDiscount);
+        txtRisparmio = view.findViewById(R.id.textViewDiscount);
 
-        view.findViewById(R.id.button_calcola).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        view.findViewById(R.id.button_calcola).setOnClickListener(v -> {
 
-                if (!txtPrezzo.getText().toString().equals("") && !txtPercentuale.getText().toString().equals("")) {
-                    prezzo = Double.parseDouble(txtPrezzo.getText().toString());
-                    percentuale = Double.parseDouble(txtPercentuale.getText().toString());
-                } else Toast.makeText(getContext(),R.string.error , Toast.LENGTH_SHORT).show();
-                if (percentuale > 100) {
-                    Toast.makeText(getContext(), R.string.error, Toast.LENGTH_SHORT).show();
-                    percentuale = 100;
-                }
-                percentuale = 100 - percentuale;
-                percentuale = percentuale / 100;
-                prezzoFinale = percentuale * prezzo;
+            if (!txtPrezzo.getText().toString().equals("") && !txtPercentuale.getText().toString().equals("")) {
+                prezzo = Double.parseDouble(txtPrezzo.getText().toString());
+                percentuale = Double.parseDouble(txtPercentuale.getText().toString());
+            } else Toast.makeText(getContext(), R.string.error, Toast.LENGTH_SHORT).show();
+            if (percentuale > 100) {
+                Toast.makeText(getContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                percentuale = 100;
+            }
+            percentuale = 100 - percentuale;
+            percentuale = percentuale / 100;
+            prezzoFinale = percentuale * prezzo;
 
-                String prezzofinaleString = Double.toString(arrotonda(prezzoFinale))+ getResources().getString(R.string.symbol);
+            String prezzofinaleString = arrotonda(prezzoFinale) + getResources().getString(R.string.symbol);
 
-                txtRisultatoFinale.setText(prezzofinaleString);
+            txtRisultatoFinale.setText(prezzofinaleString);
 
-                risparmio = prezzo - prezzoFinale;
+            risparmio = prezzo - prezzoFinale;
 
-                String risparmioString = getResources().getString(R.string.savings) + Double.toString((arrotonda(risparmio))) + getResources().getString(R.string.symbol);
+            String risparmioString = getResources().getString(R.string.savings) + arrotonda(risparmio) + getResources().getString(R.string.symbol);
 
-                txtRisparmio.setText(risparmioString);
+            txtRisparmio.setText(risparmioString);
 
-                if (checkbox1){
-                    Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                    ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
-                    clipboardManager.setPrimaryClip(clipdata);
-                }
+            if (checkbox1) {
+                Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
+                clipboardManager.setPrimaryClip(clipdata);
             }
         });
 
 
-        view.findViewById(R.id.button_azzera).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txtRisultatoFinale.setText(R.string.default_result);
-                txtPercentuale.setText("");
-                txtPrezzo.setText("");
-                txtRisparmio.setText(R.string.savings);
-                percentuale = 0;
-                prezzo = 0;
-                prezzoFinale = 0;
-                risparmio = 0;
-            }
+        view.findViewById(R.id.button_azzera).setOnClickListener(v -> {
+            txtRisultatoFinale.setText(R.string.default_result);
+            txtPercentuale.setText("");
+            txtPrezzo.setText("");
+            txtRisparmio.setText(R.string.savings);
+            percentuale = 0;
+            prezzo = 0;
+            prezzoFinale = 0;
+            risparmio = 0;
         });
 
 
         if (!checkbox1) {
-            view.findViewById(R.id.add_fab).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.add_fab).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            mAddFab.setVisibility(View.VISIBLE);
+            mAddFab.setOnClickListener(v -> {
 
-                    if (!isAllFabsVisible) {
-                        // when isAllFabsVisible becomes
-                        // true make all the action name
-                        // texts and FABs VISIBLE.
-                        mAddResultFab.show();
+                if (!isAllFabsVisible) {
+                    if (checkbox2) {
                         mAddSavingFab.show();
-                        addResultText
-                                .setVisibility(View.VISIBLE);
-                        addSavingActionText
-                                .setVisibility(View.VISIBLE);
-                        // Now extend the parent FAB, as
-                        // user clicks on the shrinked
-                        // parent FAB
-                        mAddFab.extend();
-                        // make the boolean variable true as
-                        // we have set the sub FABs
-                        // visibility to GONE
-                        isAllFabsVisible = true;
-                    } else {
-                        // when isAllFabsVisible becomes
-                        // true make all the action name
-                        // texts and FABs GONE.
-                        mAddSavingFab.hide();
-                        mAddResultFab.hide();
-                        addSavingActionText
-                                .setVisibility(View.GONE);
-                        addResultText
-                                .setVisibility(View.GONE);
-                        // Set the FAB to shrink after user
-                        // closes all the sub FABs
-                        mAddFab.shrink();
-                        // make the boolean variable false
-                        // as we have set the sub FABs
-                        // visibility to GONE
-                        isAllFabsVisible = false;
+                        addSavingActionText.setVisibility(View.VISIBLE);
                     }
 
-                    mAddResultFab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                            ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                            ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
-                            clipboardManager.setPrimaryClip(clipdata);
-                        }
-                    });
+                    mAddResultFab.show();
+                    addResultText.setVisibility(View.VISIBLE);
+                    mAddFab.extend();
 
-                    mAddSavingFab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                            ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                            ClipData clipdata = ClipData.newPlainText("", txtRisparmio.getText().toString());
-                            clipboardManager.setPrimaryClip(clipdata);
-                        }
-                    });
-
+                    isAllFabsVisible = true;
+                } else {
+                    mAddSavingFab.hide();
+                    mAddResultFab.hide();
+                    addSavingActionText.setVisibility(View.GONE);
+                    addResultText.setVisibility(View.GONE);
+                    mAddFab.shrink();
+                    isAllFabsVisible = false;
                 }
+
+                mAddResultFab.setOnClickListener(v1 -> {
+                    Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
+                    clipboardManager.setPrimaryClip(clipdata);
+                });
+
+                mAddSavingFab.setOnClickListener(v12 -> {
+                    Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clipdata = ClipData.newPlainText("", txtRisparmio.getText().toString());
+                    clipboardManager.setPrimaryClip(clipdata);
+                });
+
             });
         } else {
             view.findViewById(R.id.add_fab).setVisibility(View.GONE);
         }
 
-        if (!checkbox2) { view.findViewById(R.id.textViewDiscount).setVisibility(View.GONE); }
+        if (!checkbox2) {
+            view.findViewById(R.id.textViewDiscount).setVisibility(View.GONE);
+
+            mAddFab.setVisibility(View.GONE);
+            mAddDefaultFab.setVisibility(View.VISIBLE);
+            mAddDefaultFab.setOnClickListener(v -> {
+                Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
+                clipboardManager.setPrimaryClip(clipdata);
+            });
+
+
+        }
 
 
     }
-
 
 
     @Override

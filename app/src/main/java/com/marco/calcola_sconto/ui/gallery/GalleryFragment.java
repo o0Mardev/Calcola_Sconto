@@ -1,49 +1,56 @@
 package com.marco.calcola_sconto.ui.gallery;
 
-import android.content.res.Resources;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.marco.calcola_sconto.BuildConfig;
 import com.marco.calcola_sconto.R;
-import com.marco.calcola_sconto.databinding.FragmentGalleryBinding;
-
-import org.w3c.dom.Text;
 
 public class GalleryFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
-    private FragmentGalleryBinding binding;
-
-    String versionName = BuildConfig.VERSION_NAME;
-    TextView textViewVersion;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
-
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return inflater.inflate(R.layout.fragment_gallery,container,false);
     }
 
 
 
-    public  void  onViewCreated(View view, Bundle savedInstanceState){
+    public  void  onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        textViewVersion =  view.findViewById(R.id.textViewVersion);
 
-        textViewVersion.setText(getResources().getString(R.string.version) + versionName);
+        CardView cardView1 = view.findViewById(R.id.cardView1);
+        cardView1.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse("https://github.com/o0Mardev/Calcola_Sconto/tree/master/app/src/main/res"));
+            startActivity(intent);
+        });
+
+
+
+        CardView cardView2 = view.findViewById(R.id.cardView2);
+        cardView2.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse("https://github.com/o0Mardev/Calcola_Sconto/pulls"));
+            startActivity(intent);
+
+        });
+        TextView textViewVersion = view.findViewById(R.id.textViewVersion);
+        textViewVersion.setText(BuildConfig.VERSION_NAME);
 
     }
 
@@ -51,10 +58,6 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
-
-
-
     
 }

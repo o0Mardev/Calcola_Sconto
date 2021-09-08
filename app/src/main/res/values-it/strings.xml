@@ -22,9 +22,11 @@
 
     <string name="apply_button">Applica</string>
 
-    <string name="gallery_fragment1">Applicazione sviluppata da Marco Del Vecchio</string>
-    <string name="gallery_fragment2">Questo è un progetto open-source</string>
-    <string name="version">Versione: \u0020</string>
+    <string name="gallery_fragment1">Aiuta con le traduzioni</string>
+    <string name="gallery_fragment_subtitle1">Apri una richiesta di modifica su Github</string>
+    <string name="gallery_fragment2">Feedback e richieste</string>
+    <string name="gallery_fragment_subtitle2">Questo è un progetto open-source</string>
+    <string name="version">Versione app:</string>
 
 
     <string name="discount_title">Mostra risparmio</string>
@@ -46,5 +48,7 @@
     <string name="copy_result">Copia risultato</string>
     <string name="copy_saving">Copia risparmio</string>
     <string name="copy">Copia</string>
+
+    <string name="accessibility1">Clicca qui per applicare le impostazioni</string>
 
 </resources>

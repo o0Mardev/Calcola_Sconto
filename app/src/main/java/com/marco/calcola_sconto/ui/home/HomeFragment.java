@@ -72,11 +72,11 @@ public class HomeFragment extends Fragment {
 
         SharedPreferences sharedPreferences1 =
                 PreferenceManager.getDefaultSharedPreferences(requireContext());
-        boolean checkbox1 = sharedPreferences1.getBoolean("check_box_preference_shortcut", false);
+        boolean checkBoxPreferenceShortcut = sharedPreferences1.getBoolean("check_box_preference_shortcut", false);
 
         SharedPreferences sharedPreferences2 =
                 PreferenceManager.getDefaultSharedPreferences(requireContext());
-        boolean checkbox2 = sharedPreferences2.getBoolean("check_box_preference_discount", false);
+        boolean checkBoxPreferenceDiscount = sharedPreferences2.getBoolean("check_box_preference_discount", false);
 
         txtPrezzo = view.findViewById(R.id.EditText_prezzo);
         txtPercentuale = view.findViewById(R.id.EditText_percentuale);
@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment {
 
             txtRisparmio.setText(risparmioString);
 
-            if (checkbox1) {
+            if (checkBoxPreferenceShortcut) {
                 Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
@@ -128,62 +128,60 @@ public class HomeFragment extends Fragment {
         });
 
 
-        if (!checkbox1) {
-            mAddFab.setVisibility(View.VISIBLE);
+        if (checkBoxPreferenceShortcut) {
+            mAddFab.setVisibility(View.GONE);
+        } else {
             mAddFab.setOnClickListener(v -> {
-
-                if (!isAllFabsVisible) {
-                    if (checkbox2) {
+                if (checkBoxPreferenceDiscount) {
+                    if (!isAllFabsVisible) {
+                        mAddFab.extend();
                         mAddSavingFab.show();
                         addSavingActionText.setVisibility(View.VISIBLE);
+                        mAddResultFab.show();
+                        addResultText.setVisibility(View.VISIBLE);
+                        isAllFabsVisible = true;
+
+                        mAddResultFab.setOnClickListener(v1 -> {
+                            Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                            ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                            ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
+                            clipboardManager.setPrimaryClip(clipdata);
+                        });
+
+                        mAddSavingFab.setOnClickListener(v12 -> {
+                            Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                            ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                            ClipData clipdata = ClipData.newPlainText("", txtRisparmio.getText().toString());
+                            clipboardManager.setPrimaryClip(clipdata);
+                        });
+
+                    } else {
+                        mAddSavingFab.hide();
+                        mAddResultFab.hide();
+                        addSavingActionText.setVisibility(View.GONE);
+                        addResultText.setVisibility(View.GONE);
+                        mAddFab.shrink();
+                        isAllFabsVisible = false;
                     }
 
-                    mAddResultFab.show();
-                    addResultText.setVisibility(View.VISIBLE);
-                    mAddFab.extend();
-
-                    isAllFabsVisible = true;
-                } else {
-                    mAddSavingFab.hide();
-                    mAddResultFab.hide();
-                    addSavingActionText.setVisibility(View.GONE);
-                    addResultText.setVisibility(View.GONE);
-                    mAddFab.shrink();
-                    isAllFabsVisible = false;
                 }
 
-                mAddResultFab.setOnClickListener(v1 -> {
-                    Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                    ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
-                    clipboardManager.setPrimaryClip(clipdata);
-                });
-
-                mAddSavingFab.setOnClickListener(v12 -> {
-                    Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                    ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clipdata = ClipData.newPlainText("", txtRisparmio.getText().toString());
-                    clipboardManager.setPrimaryClip(clipdata);
-                });
-
             });
-        } else {
-            view.findViewById(R.id.add_fab).setVisibility(View.GONE);
         }
 
-        if (!checkbox2) {
-            view.findViewById(R.id.textViewDiscount).setVisibility(View.GONE);
-
-            mAddFab.setVisibility(View.GONE);
-            mAddDefaultFab.setVisibility(View.VISIBLE);
-            mAddDefaultFab.setOnClickListener(v -> {
+        if (!checkBoxPreferenceShortcut){
+            if (!checkBoxPreferenceDiscount)
+            mAddFab.setOnClickListener(v13 -> {
                 Snackbar.make(view, R.string.copy_snackbar, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipdata = ClipData.newPlainText("", txtRisultatoFinale.getText().toString());
                 clipboardManager.setPrimaryClip(clipdata);
+
             });
+        }
 
-
+         if (!checkBoxPreferenceDiscount){
+            view.findViewById(R.id.textViewDiscount).setVisibility(View.GONE);
         }
 
 

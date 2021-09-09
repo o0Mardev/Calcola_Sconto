@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment"
+    android:background="?attr/colorPrimarySurface">
+
+    <EditText
+        android:id="@+id/EditText_percentuale"
+        android:layout_width="540dp"
+        android:layout_height="60dp"
+        android:digits="0123456789."
+        android:textSize="30sp"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="@string/second_hint"
+        android:inputType="numberDecimal|none"
+        android:shadowColor="?attr/colorOnPrimary"
+        android:textColor="?attr/colorPrimary"
+        android:textColorHighlight="?attr/colorPrimary"
+        android:textColorHint="?attr/colorPrimary"
+        android:textColorLink="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.356" />
+
+    <TextView
+        android:id="@+id/TextView_risultato"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="@string/default_result"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/EditText_prezzo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.547" />
+
+    <Button
+        android:id="@+id/button_azzera"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="@string/clear_button"
+        android:textColor="?attr/colorOnPrimary"
+        android:textColorHighlight="?attr/colorOnPrimary"
+        android:textColorLink="?attr/colorOnPrimary"
+        android:textSize="30sp"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.655"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.546"
+        app:rippleColor="?attr/colorOnPrimary" />
+
+    <Button
+        android:id="@+id/button_calcola"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="@string/calculate_button"
+        android:textColor="?attr/colorOnPrimary"
+        android:textColorHighlight="?attr/colorOnPrimary"
+        android:textColorLink="?attr/colorOnPrimary"
+        android:textSize="30sp"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.546"
+        app:rippleColor="?attr/colorOnPrimary" />
+
+    <EditText
+        android:id="@+id/EditText_prezzo"
+        android:layout_width="540dp"
+        android:layout_height="60dp"
+        android:digits="0123456789."
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:textSize="30sp"
+        android:hint="@string/first_hint"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal|none"
+        android:shadowColor="?attr/colorPrimary"
+        android:textColor="?attr/colorPrimary"
+        android:textColorHighlight="?attr/colorPrimary"
+        android:textColorHint="?attr/colorPrimary"
+        android:textColorLink="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:visibility="visible"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.950"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.900"
+        app:icon="@drawable/ic_baseline_content_copy"
+        android:text="@string/copy"
+        android:textSize="30sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_copy_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="?attr/colorPrimary"
+        app:borderWidth="0dp"
+        android:background="?attr/colorPrimary"
+        app:fabCustomSize="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_fab"
+        app:layout_constraintEnd_toEndOf="@+id/add_fab"
+        app:srcCompat="@drawable/ic_baseline_copy_all">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <TextView
+        android:id="@+id/copy_result_action_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="?attr/colorPrimary"
+        android:text="@string/copy_result"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_copy_result"
+        app:layout_constraintEnd_toStartOf="@+id/fab_copy_result"
+        app:layout_constraintTop_toTopOf="@+id/fab_copy_result" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_copy_saving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:borderWidth="0dp"
+        app:fabCustomSize="70dp"
+        android:background="?attr/colorPrimary"
+        android:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/fab_copy_result"
+        app:layout_constraintEnd_toEndOf="@+id/fab_copy_result"
+        app:layout_constraintStart_toStartOf="@+id/fab_copy_result"
+        app:srcCompat="@drawable/ic_baseline_copy_all" />
+
+    <TextView
+        android:id="@+id/copy_saving_action_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textSize="18dp"
+        android:text="@string/copy_saving"
+        android:textColor="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_copy_saving"
+        app:layout_constraintEnd_toStartOf="@+id/fab_copy_saving"
+        app:layout_constraintTop_toTopOf="@+id/fab_copy_saving" />
+
+    <TextView
+        android:id="@+id/textViewDiscount"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:background="@drawable/discount_background"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/savings"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="30sp"
+        android:visibility="visible"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_copy_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:backgroundTint="?attr/colorPrimary"
+        android:visibility="gone"
+        android:elevation="2dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="64dp"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_content_copy">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
